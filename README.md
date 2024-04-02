@@ -12,7 +12,7 @@ small project to test `devenv`'s [stdenv override](https://github.com/cachix/dev
 nix develop github:ink-splatters/devenv-stdenv-override-test --impure --accept-flake-config
 ```
 
-or, for development: 
+or, for development:
 
 ```sh
 git clone https://github.com/ink-splatters/devenv-stdenv-override-test.git && devenv-stdenv-override-test
@@ -33,6 +33,7 @@ flake project created with:
 ```sh
 nix flake init --template github:cachix/devenv
 ```
+
 #### The issue
 
 given `stdenv` is overriden to: `llvmPackages_17.stdenv`, `llvm` is being built from sources
@@ -113,14 +114,15 @@ makes everything work.
 #### Expected behavior
 
 The combination:
+
 ```nix
 ...
  pre-commit.hooks.nixfmt.enable = true;
  languages.nix.enable = false;
 ...
 ```
-works.
 
+works.
 
 #### Motivation
 
@@ -129,6 +131,6 @@ IMO one may not need LSPs which come with enabling a language, e.g. if they just
 ## Credits
 
 [@domenkozar](https://github.com/domenkozar) for:
+
 - cachix
 - devenv
-
