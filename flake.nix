@@ -1,10 +1,23 @@
 {
   inputs = {
-    #nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
+    # nixpkgs.url = "github:cachix/devenv-nixpkgs/rolling";
     nixpkgs.url = "nixpkgs/nixpkgs-unstable";
     systems.url = "github:nix-systems/default";
-    devenv.url = "github:cachix/devenv/a72055d4b3588cea2dcf08163a3be5781e838a72";
-    devenv.inputs.nixpkgs.follows = "nixpkgs";
+    devenv = {
+      url = "github:cachix/devenv/a72055d4b3588cea2dcf08163a3be5781e838a72";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        pre-commit-hooks.follows=  "pre-commit-hooks";
+      };
+    };
+
+    pre-commit-hooks = {
+      url = "github:cachix/pre-commit-hooks.nix";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        nixpkgs-stable.follows = "nixpkgs";
+      };
+    };
   };
 
   nixConfig = {
@@ -36,8 +49,10 @@
                   packages = [ pkgs.hello ];
 
                   enterShell = ''
-                    export PS1="\n\[\033[01;36m\]‹non-devenv-shell› \\$ \[\033[00m\]"
+                    echo -e '\033[01;36m'
                     hello
+                    echo -e '...from devenv!\033[00m'
+                    echo
                     clang --version
                   '';
 
