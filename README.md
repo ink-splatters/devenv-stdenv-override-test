@@ -1,4 +1,4 @@
-# devenv-test
+# overriding stdenv in devenv
 
 small project to test `devenv`'s [stdenv override](https://github.com/cachix/devenv/commit/a72055d4b3588cea2dcf08163a3be5781e838a72) support
 
